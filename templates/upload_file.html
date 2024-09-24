@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload File</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2 class="text-center">Upload File</h2>
-        {% if error %}
-            <div class="alert alert-danger">{{ error }}</div>
-        {% endif %}
-        <form action="{% url 'upload_and_encrypt_file' %}" method="post" enctype="multipart/form-data" class="mt-4">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="file">Choose file</label>
-                <input type="file" class="form-control-file" id="file" name="file" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
-        <a href="{% url 'list_uploaded_files' %}" class="btn btn-secondary mt-3">View Uploaded Files</a>
+{% extends 'base.html' %}
+
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+<h2>Upload File</h2>
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+<form action="{% url 'upload_and_encrypt_file' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="file">Choose file</label>
+        <input type="file" class="form-control-file" id="file" name="file" required>
     </div>
-</body>
-</html>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+{% endblock %}
