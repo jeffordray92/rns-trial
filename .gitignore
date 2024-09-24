@@ -1,0 +1,5 @@
+.env
+__pycache__
+uploaded_files/
+.DS_Store
+db.sqlite3
